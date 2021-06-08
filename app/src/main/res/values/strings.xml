@@ -1,0 +1,73 @@
+<resources>
+    <string name="app_name">Manageio</string>
+    <string name="welcomeText">WELCOME!</string>
+    <string name="letsStartText">Let\'s get started!</string>
+    <string name="appMessage">Collaborate and Plan Together Across\nMultiple Devices on Manageio\'s\nMinimalist Interface</string>
+    <string name="loginText">Login</string>
+    <string name="doNotHaveAccountText">Do not have an account?</string>
+    <string name="registerText">Register</string>
+    <string name="helloWithComma">Hello,</string>
+    <string name="usernameText">Username</string>
+    <string name="emailText">Email</string>
+    <string name="registerExclamation">REGISTER!</string>
+    <string name="loginExclamation">LOGIN!</string>
+    <string name="passwordText">Password</string>
+    <string name="already_have_an_account_text">Already have an account?</string>
+    <string name="forgot_password_text">Forgot Password?</string>
+    <string name="forgot_password_actvity_header">Forgot\nPassword?</string>
+    <string name="passwordHeaderText">PASSWORD!</string>
+    <string name="forgotHeaderText">FORGOT</string>
+    <string name="forgot_password_title_description">Enter your e-mail address then we\'ll send you an email to reset your password</string>
+    <string name="submitText">Submit</string>
+    <string name="please_wait">Please Wait</string>
+    <string name="MyProfileText">My Profile</string>
+    <string name="sign_out_text">Sign Out</string>
+    <string name="updateText">Update</string>
+    <string name="mobileText">Mobile</string>
+    <string name="createText">CREATE</string>
+    <string name="boardText">BOARD</string>
+    <string name="board_nameText">Board Name</string>
+    <string name="createBtnText">Create</string>
+    <string name="titleText">Title</string>
+    <string name="add_listText">Add List</string>
+    <string name="image_description">Image Description</string>
+
+    <string name="action_add_list">Add List</string>
+
+    <string name="hint_list_name">List Name</string>
+
+    <string name="action_add_card">Add Card</string>
+
+    <string name="hint_card_name">Card Name</string>
+
+    <string name="add_list">Add List</string>
+    <string name="image_contentDescription">Image</string>
+    <string name="membersText">Members</string>
+    <string name="add_member">Add Member</string>
+    <string name="add">ADD</string>
+    <string name="cancel">CANCEL</string>
+    <string name="search_member">Search Member</string>
+
+    <string name="label_color">Label Color</string>
+
+    <string name="select_color">Select Color</string>
+
+    <string name="select_members">Select Members</string>
+
+    <string name="due_date">Due Date</string>
+
+    <string name="select_due_date">Select Due Date</string>
+    <string name="delete_card">Delete Card</string>
+
+    <string name="members">Members</string>
+    <string name="update">Update</string>
+    <string name="alert">Alert</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="confirmation_message_to_delete_card">Are you sure you want to delete card \'%1$s\'?</string>
+
+    <string name="str_select_label_color">Select Label Color</string>
+    <string name="str_select_member">Select Member</string>
+    <string name="default_notification_channel_id">manageio_notification_channel_id</string>
+
+</resources>

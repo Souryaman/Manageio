@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "438083970396",
+    "project_id": "manageio",
+    "storage_bucket": "manageio.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438083970396:android:3db1c720ab7bfc897c8d99",
+        "android_client_info": {
+          "package_name": "com.example.manageio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "438083970396-mnhpkkdbtm67mafriear6pbmhmf4nomp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBs0_FlDIEif_D3ClOMScmpn13axRawAGc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438083970396-mnhpkkdbtm67mafriear6pbmhmf4nomp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

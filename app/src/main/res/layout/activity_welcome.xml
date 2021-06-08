@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/welcome_screen"
+    tools:context=".activities.WelcomeActivity">
+
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/boogaloo"
+        android:text="@string/welcomeText"
+        android:textColor="@color/white"
+        android:textSize="50sp"
+        android:textStyle="bold"
+         />
+
+    <TextView
+        android:id="@+id/appMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/boogaloo"
+        android:layout_below="@+id/letsStart"
+        android:text="@string/letsStartText"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        />
+
+
+
+    <TextView
+        android:id="@+id/letsStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/boogaloo"
+        android:layout_below="@+id/welcomeText"
+        android:text="@string/appMessage"
+        android:textColor="@color/secondaryText"
+        android:textSize="20sp"
+        />
+
+
+    <Button
+        android:id="@+id/welcome_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appMessage"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/primaryColor"
+        android:fontFamily="@font/boogaloo"
+        android:padding="8dp"
+        android:text="@string/loginText"
+        android:textSize="24sp"
+        app:cornerRadius="20dp" />
+
+    <TextView
+        android:id="@+id/do_not_have_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="@font/boogaloo"
+        android:text="@string/doNotHaveAccountText"
+        android:textColor="@color/secondaryText"
+        android:textSize="24sp"
+        />
+
+    <TextView
+        android:id="@+id/welcome_register_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="@font/boogaloo"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/do_not_have_account"
+        android:text="@string/registerText"
+        android:textColor="@color/primaryColor"
+        android:textSize="24sp"
+        android:textStyle="bold"
+         />
+
+</RelativeLayout>
