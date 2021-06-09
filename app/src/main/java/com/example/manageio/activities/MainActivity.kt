@@ -60,6 +60,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 updateFCMTOKEN(instanceIdResult.token)
             }
         }
+        println("master")
         // TODO Check 1
 //        FirestoreClass().loadUserData(this , true)
 
