@@ -19,6 +19,8 @@ import com.example.manageio.utils.Constants
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
+// Remove all methods from video 274 and then check cloud messaging
+
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
@@ -28,10 +30,15 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         remoteMessage.data.isNotEmpty().let {
             Log.d("fcm", "Message data payload : ${remoteMessage.data}")
-            val title = remoteMessage.data[Constants.FCM_KEY_TITLE]!!
-            val message = remoteMessage.data[Constants.FCM_KEY_MESSAGE]!!
 
-            sendNotification(title,message)
+          val title = remoteMessage.data[Constants.FCM_KEY_TITLE]
+          val message = remoteMessage.data[Constants.FCM_KEY_MESSAGE]
+
+            if (title != null) {
+                if (message != null) {
+                    sendNotification(title,message)
+                }
+            }
         }
 
         remoteMessage.notification?.let {

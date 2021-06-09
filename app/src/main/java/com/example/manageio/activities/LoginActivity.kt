@@ -8,8 +8,7 @@ import com.example.manageio.R
 import com.example.manageio.firebase.FirestoreClass
 import com.example.manageio.models.User
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
 
@@ -19,7 +18,7 @@ class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        auth = Firebase.auth
+        auth = FirebaseAuth.getInstance()
 
         login_register_text.setOnClickListener {
             startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))

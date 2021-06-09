@@ -28,6 +28,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.installations.FirebaseInstallations
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessaging.getInstance
+import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.main_content.*
@@ -50,7 +51,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         setUpActionBar()
         nav_view.setNavigationItemSelectedListener(this)
 
-        mSharedPreferences = this.getSharedPreferences(Constants.MANAGEIO_PREFERENCES, Context.MODE_PRIVATE)
+        mSharedPreferences = this.getSharedPreferences(Constants.MANAGEIO_PREFERENCES, MODE_PRIVATE)
         val tokenUpdated = mSharedPreferences.getBoolean(Constants.FCM_TOKEN_UPDATED,false)
 
         if(tokenUpdated){
@@ -58,9 +59,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             FirestoreClass().loadUserData(this@MainActivity,true)
         }
         else{
-            FirebaseInstallations.getInstance().getToken(tokenUpdated).addOnSuccessListener(this@MainActivity){
-                instanceIdResult ->
-                updateFCMTOKEN(instanceIdResult.token)
+            FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener ( this@MainActivity ) { instanceIdResult ->
+                    updateFCMTOKEN(instanceIdResult.token)
             }
         }
         println("master")
@@ -157,9 +157,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode == Activity.RESULT_OK && requestCode == MY_PROFILE_REQUEST_CODE){
+        if(resultCode == RESULT_OK && requestCode == MY_PROFILE_REQUEST_CODE){
             FirestoreClass().loadUserData(this)
-        }else if(resultCode == Activity.RESULT_OK && requestCode == CREATE_BOARD_REQUEST_CODE){
+        }else if(resultCode == RESULT_OK && requestCode == CREATE_BOARD_REQUEST_CODE){
             FirestoreClass().getBoardsList(this)
         }
         else{
