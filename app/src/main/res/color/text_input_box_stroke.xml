@@ -2,6 +2,6 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:color="@color/primaryColor" android:state_focused="true"/>
     <item android:color="@color/darkPrimaryColor" android:state_hovered="true"/>
-    <item android:color="@color/secondaryText"/>
+    <item android:color="@color/primaryText"/>
 
 </selector>

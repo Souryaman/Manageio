@@ -25,6 +25,14 @@ class FirestoreClass {
             }
     }
 
+//    fun getCreatedUserDetails(board: Board,documentId: String){
+//        mFireStore.collection(Constants.BOARDS).document(documentId).get().addOnSuccessListener {
+//            document ->
+//            val userName = document.toObject(Board::class.java)!!
+//            userName.documentId = document.crea
+//        }
+//    }
+
     fun getBoardDetails(activity: TaskListActivity, documentId: String) {
         mFireStore.collection(Constants.BOARDS)
             .document(documentId)

@@ -63,19 +63,19 @@
             android:name=".activities.ForgotPasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Manageio.NoActionBar"
-            android:windowSoftInputMode="adjustPan|stateAlwaysVisible"
+            android:windowSoftInputMode="adjustPan|adjustResize"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".activities.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Manageio.NoActionBar"
-            android:windowSoftInputMode="adjustPan|stateHidden"
+            android:windowSoftInputMode="adjustResize|adjustPan"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".activities.RegisterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Manageio.NoActionBar"
-            android:windowSoftInputMode="adjustPan|stateHidden"
+            android:windowSoftInputMode="adjustPan|adjustResize"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".activities.WelcomeActivity"

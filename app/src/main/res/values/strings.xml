@@ -9,8 +9,8 @@
     <string name="helloWithComma">Hello,</string>
     <string name="usernameText">Username</string>
     <string name="emailText">Email</string>
-    <string name="registerExclamation">REGISTER!</string>
-    <string name="loginExclamation">LOGIN!</string>
+    <string name="registerExclamation">REGISTER</string>
+    <string name="loginExclamation">LOGIN</string>
     <string name="passwordText">Password</string>
     <string name="already_have_an_account_text">Already have an account?</string>
     <string name="forgot_password_text">Forgot Password?</string>
@@ -21,7 +21,7 @@
     <string name="submitText">Submit</string>
     <string name="please_wait">Please Wait</string>
     <string name="MyProfileText">My Profile</string>
-    <string name="sign_out_text">Sign Out</string>
+    <string name="sign_out_text">Logout</string>
     <string name="updateText">Update</string>
     <string name="mobileText">Mobile</string>
     <string name="createText">CREATE</string>
@@ -69,5 +69,6 @@
     <string name="str_select_label_color">Select Label Color</string>
     <string name="str_select_member">Select Member</string>
     <string name="default_notification_channel_id">manageio_notification_channel_id</string>
+    <string name="forgotPassText">FORGOT PASSWORD</string>
 
 </resources>

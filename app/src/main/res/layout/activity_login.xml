@@ -4,36 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_screen"
+
     tools:context=".activities.LoginActivity">
 
-    <TextView
-        android:id="@+id/login_loginExclamationText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:fontFamily="@font/boogaloo"
-        android:text="@string/loginExclamation"
-        android:textColor="@color/white"
-        android:textSize="40sp"
-        android:textStyle="bold"
+    <FrameLayout
+        android:id="@+id/fl_login"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/darkPrimaryColor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.061"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/login_loginText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/boogaloo"
+            android:gravity="center"
+            android:text="@string/loginExclamation"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </FrameLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.65">
-
+        app:layout_constraintTop_toBottomOf="@+id/fl_login">
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -54,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:padding="@dimen/et_padding"
-                android:textColor="@color/darkPrimaryColor"
+                android:textColor="@color/primaryText"
                 android:textCursorDrawable="@null"
                 android:textSize="@dimen/et_textSize" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -78,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:padding="@dimen/et_padding"
-                android:textColor="@color/darkPrimaryColor"
+                android:textColor="@color/primaryText"
                 android:textCursorDrawable="@null"
                 android:textSize="@dimen/et_textSize" />
 
@@ -95,6 +104,7 @@
             android:text="@string/forgot_password_text"
             android:textColor="@color/primaryColor"
             android:textSize="20sp" />
+
         <Button
             android:id="@+id/login_loginBtn"
             android:layout_width="wrap_content"
@@ -111,34 +121,40 @@
             app:cornerRadius="20dp" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/login_do_not_have_account"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/ll_lower_task"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/boogaloo"
-        android:text="@string/doNotHaveAccountText"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/login_register_text"
-        app:layout_constraintHorizontal_bias="0.568"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.789" />
-
-    <TextView
-        android:id="@+id/login_register_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="100dp"
-        android:fontFamily="@font/boogaloo"
-        android:text="@string/registerText"
-        android:textColor="@color/primaryColor"
-        android:textSize="24sp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.737" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="40dp"
+            android:fontFamily="@font/boogaloo"
+            android:gravity="center"
+            android:text="@string/doNotHaveAccountText"
+            android:textAlignment="center"
+            android:textColor="@color/primaryText"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/login_register_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/boogaloo"
+            android:gravity="center"
+            android:text="@string/registerText"
+            android:textAlignment="center"
+            android:textColor="@color/primaryColor"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

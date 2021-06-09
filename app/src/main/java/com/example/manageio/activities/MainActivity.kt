@@ -1,4 +1,3 @@
-
 package com.example.manageio.activities
 
 import android.app.Activity
@@ -36,13 +35,13 @@ import kotlinx.android.synthetic.main.nav_header_main.*
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    companion object{
-        const val MY_PROFILE_REQUEST_CODE : Int = 99
-        const val CREATE_BOARD_REQUEST_CODE : Int =98
+    companion object {
+        const val MY_PROFILE_REQUEST_CODE: Int = 99
+        const val CREATE_BOARD_REQUEST_CODE: Int = 98
     }
 
-    private lateinit var mUserName : String
-    private lateinit var mSharedPreferences : SharedPreferences
+    private lateinit var mUserName: String
+    private lateinit var mSharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,52 +51,50 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         nav_view.setNavigationItemSelectedListener(this)
 
         mSharedPreferences = this.getSharedPreferences(Constants.MANAGEIO_PREFERENCES, MODE_PRIVATE)
-        val tokenUpdated = mSharedPreferences.getBoolean(Constants.FCM_TOKEN_UPDATED,false)
+        val tokenUpdated = mSharedPreferences.getBoolean(Constants.FCM_TOKEN_UPDATED, false)
 
-        if(tokenUpdated){
+        if (tokenUpdated) {
             showProgressDialog(resources.getString(R.string.please_wait))
-            FirestoreClass().loadUserData(this@MainActivity,true)
-        }
-        else{
-            FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener ( this@MainActivity ) { instanceIdResult ->
-                    updateFCMTOKEN(instanceIdResult.token)
+            FirestoreClass().loadUserData(this@MainActivity, true)
+        } else {
+            FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener(this@MainActivity) { instanceIdResult ->
+                updateFCMTOKEN(instanceIdResult.token)
             }
         }
         println("master")
-        // TODO Check 1
-//        FirestoreClass().loadUserData(this , true)
 
-        fab_createBoard.setOnClickListener{
-            val intent = Intent(this@MainActivity,CreateBoardActivity::class.java)
-            intent.putExtra(Constants.NAME,mUserName)
+
+        fab_createBoard.setOnClickListener {
+            val intent = Intent(this@MainActivity, CreateBoardActivity::class.java)
+            intent.putExtra(Constants.NAME, mUserName)
             startActivityForResult(intent, CREATE_BOARD_REQUEST_CODE)
 
         }
 
     }
 
-    fun populateBoardsListToUI(boardsList : ArrayList<Board>){
+    fun populateBoardsListToUI(boardsList: ArrayList<Board>) {
         hideProgressDialog()
 
-        if(boardsList.size > 0){
+        if (boardsList.size > 0) {
             rv_boardList.visibility = View.VISIBLE
             tv_noBoardsAvailable.visibility = View.GONE
 
             rv_boardList.layoutManager = LinearLayoutManager(this)
             rv_boardList.setHasFixedSize(true)
 
-            val adapter = BoardItemsAdapter(this,boardsList)
+            val adapter = BoardItemsAdapter(this, boardsList)
             rv_boardList.adapter = adapter
 
-            adapter.setOnClickListener(object :BoardItemsAdapter.OnClickListener{
+            adapter.setOnClickListener(object : BoardItemsAdapter.OnClickListener {
                 override fun onClick(position: Int, model: Board) {
-                    val intent = Intent(this@MainActivity,TaskListActivity::class.java)
-                    intent.putExtra(Constants.DOCUMENT_ID,model.documentId)
+                    val intent = Intent(this@MainActivity, TaskListActivity::class.java)
+                    intent.putExtra(Constants.DOCUMENT_ID, model.documentId)
                     startActivity(intent)
                 }
             })
 
-            val item = object  : SwipeToDelete(this,0,ItemTouchHelper.RIGHT){
+            val item = object : SwipeToDelete(this, 0, ItemTouchHelper.RIGHT) {
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                     adapter.del(viewHolder.adapterPosition)
                 }
@@ -107,7 +104,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             itemTouchHelper.attachToRecyclerView(rv_boardList)
 
 
-        }else{
+        } else {
             rv_boardList.visibility = View.GONE
             tv_noBoardsAvailable.visibility = View.VISIBLE
         }
@@ -129,7 +126,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
     }
 
-    fun updateNavigationUserDetails(user: User, readBoardsList : Boolean){
+    fun updateNavigationUserDetails(user: User, readBoardsList: Boolean) {
         hideProgressDialog()
         mUserName = user.name
         Glide
@@ -141,7 +138,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         tv_username.text = user.name
 
-        if(readBoardsList){
+        if (readBoardsList) {
             showProgressDialog(resources.getString(R.string.please_wait))
             FirestoreClass().getBoardsList(this)
         }
@@ -157,27 +154,28 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode == RESULT_OK && requestCode == MY_PROFILE_REQUEST_CODE){
+        if (resultCode == RESULT_OK && requestCode == MY_PROFILE_REQUEST_CODE) {
             FirestoreClass().loadUserData(this)
-        }else if(resultCode == RESULT_OK && requestCode == CREATE_BOARD_REQUEST_CODE){
+        } else if (resultCode == RESULT_OK && requestCode == CREATE_BOARD_REQUEST_CODE) {
             FirestoreClass().getBoardsList(this)
-        }
-        else{
+        } else {
             Log.e("MainActivity", "Cancelled")
         }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
+        when (item.itemId) {
             R.id.nav_my_profile -> {
-                startActivityForResult(Intent(this@MainActivity,ProfileActivity::class.java),
-                    MY_PROFILE_REQUEST_CODE)
+                startActivityForResult(
+                    Intent(this@MainActivity, ProfileActivity::class.java),
+                    MY_PROFILE_REQUEST_CODE
+                )
             }
 
             R.id.nav_logout -> {
                 FirebaseAuth.getInstance().signOut()
                 mSharedPreferences.edit().clear().apply()
-                val intent = Intent(this,WelcomeActivity::class.java)
+                val intent = Intent(this, WelcomeActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
                 finish()
@@ -190,19 +188,19 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
 
-    private fun updateFCMTOKEN(token : String){
-        val userHashMap = HashMap<String,Any>()
+    private fun updateFCMTOKEN(token: String) {
+        val userHashMap = HashMap<String, Any>()
         userHashMap[Constants.FCM_TOKEN] = token
         showProgressDialog(resources.getString(R.string.please_wait))
-        FirestoreClass().updateUserProfileData(this@MainActivity,userHashMap)
+        FirestoreClass().updateUserProfileData(this@MainActivity, userHashMap)
     }
 
-    fun tokenUpdateSuccess(){
+    fun tokenUpdateSuccess() {
         hideProgressDialog()
-        val editor : SharedPreferences.Editor = mSharedPreferences.edit()
-        editor.putBoolean(Constants.FCM_TOKEN_UPDATED,true)
+        val editor: SharedPreferences.Editor = mSharedPreferences.edit()
+        editor.putBoolean(Constants.FCM_TOKEN_UPDATED, true)
         editor.apply()
         showProgressDialog(resources.getString(R.string.please_wait))
-        FirestoreClass().loadUserData(this@MainActivity,true)
+        FirestoreClass().loadUserData(this@MainActivity, true)
     }
 }
