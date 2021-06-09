@@ -53,6 +53,10 @@ class FirestoreClass {
             }
     }
 
+    fun deleteBoard(){
+        mFireStore.collection(Constants.BOARDS).document(Constants.DOCUMENT_ID).delete()
+    }
+
     fun getBoardsList(activity: MainActivity) {
         mFireStore.collection(Constants.BOARDS)
             .whereArrayContains(Constants.ASSIGNED_TO, getCurrentUserId())
@@ -173,6 +177,7 @@ class FirestoreClass {
 
         return currentUserId
     }
+
 
     fun getAssignedMemberListDetails(activity: Activity , assignedTo: ArrayList<String>) {
         mFireStore.collection(Constants.USERS)

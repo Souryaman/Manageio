@@ -10,7 +10,9 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.core.view.GravityCompat
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.manageio.R
 import com.example.manageio.adapters.BoardItemsAdapter
@@ -18,6 +20,7 @@ import com.example.manageio.firebase.FirestoreClass
 import com.example.manageio.models.Board
 import com.example.manageio.models.User
 import com.example.manageio.utils.Constants
+import com.example.manageio.utils.SwipeToDelete
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.FirebaseApp.getInstance
 import com.google.firebase.auth.FirebaseAuth
@@ -93,6 +96,16 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     startActivity(intent)
                 }
             })
+
+            val item = object  : SwipeToDelete(this,0,ItemTouchHelper.RIGHT){
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    adapter.del(viewHolder.adapterPosition)
+                }
+            }
+
+            val itemTouchHelper = ItemTouchHelper(item)
+            itemTouchHelper.attachToRecyclerView(rv_boardList)
+
 
         }else{
             rv_boardList.visibility = View.GONE

@@ -7,12 +7,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.manageio.R
+import com.example.manageio.firebase.FirestoreClass
 import com.example.manageio.models.Board
 import kotlinx.android.synthetic.main.item_board.view.*
 
 open class BoardItemsAdapter(private val context: Context,private var list: ArrayList<Board>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
-
+    var lists = mutableListOf<Board>()
+    init {
+        this.lists = list as MutableList<Board>
+    }
     private var onClickListener : OnClickListener ?= null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -46,6 +50,12 @@ open class BoardItemsAdapter(private val context: Context,private var list: Arra
 
     fun setOnClickListener(onClickListener: OnClickListener){
         this.onClickListener = onClickListener
+    }
+
+    fun del(position: Int){
+        FirestoreClass().deleteBoard()
+        lists.removeAt(position)
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {
