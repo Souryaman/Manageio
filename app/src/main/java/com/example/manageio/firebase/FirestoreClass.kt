@@ -25,13 +25,7 @@ class FirestoreClass {
             }
     }
 
-//    fun getCreatedUserDetails(board: Board,documentId: String){
-//        mFireStore.collection(Constants.BOARDS).document(documentId).get().addOnSuccessListener {
-//            document ->
-//            val userName = document.toObject(Board::class.java)!!
-//            userName.documentId = document.crea
-//        }
-//    }
+
 
     fun getBoardDetails(activity: TaskListActivity, documentId: String) {
         mFireStore.collection(Constants.BOARDS)
@@ -62,7 +56,12 @@ class FirestoreClass {
     }
 
     fun deleteBoard(){
-        mFireStore.collection(Constants.BOARDS).document(Constants.DOCUMENT_ID).delete()
+        mFireStore.collection(Constants.BOARDS).document(Constants.DOCUMENT_ID).delete().addOnSuccessListener {
+            Log.i("FireStoreDel", "Item Deleted Successfully")
+        }.addOnFailureListener {
+            e->
+            Log.e("FireStoreDel","Error occured with exception $e")
+        }
     }
 
     fun getBoardsList(activity: MainActivity) {

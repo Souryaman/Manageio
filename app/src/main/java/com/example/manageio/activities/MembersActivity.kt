@@ -163,7 +163,7 @@ class MembersActivity : BaseActivity() {
                 val jsonRequest = JSONObject()
                 val dataObject = JSONObject()
                 dataObject.put(Constants.FCM_KEY_TITLE, "Manageio")
-                dataObject.put(Constants.FCM_KEY_MESSAGE, "You have assigned to $boardName")
+                dataObject.put(Constants.FCM_KEY_MESSAGE, "You have been assigned to $boardName")
 
                 jsonRequest.put(Constants.FCM_KEY_DATA, dataObject)
                 jsonRequest.put(Constants.FCM_KEY_TO, token)
