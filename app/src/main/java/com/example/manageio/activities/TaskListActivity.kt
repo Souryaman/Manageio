@@ -58,6 +58,7 @@ class TaskListActivity : BaseActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
+    @Suppress("DEPRECATION")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.action_members ->{

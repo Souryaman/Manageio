@@ -57,6 +57,7 @@
             android:name=".activities.ProfileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Manageio.NoActionBar"
+            android:windowSoftInputMode="adjustResize|adjustPan"
             tools:ignore="LockedOrientationActivity" />
         <activity android:name=".activities.BaseActivity" />
         <activity

@@ -8,6 +8,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.TextUtils
 import android.util.Log
 import android.webkit.MimeTypeMap
 import android.widget.Toast
@@ -21,6 +22,7 @@ import com.example.manageio.models.User
 import com.example.manageio.utils.Constants
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import java.io.IOException
@@ -57,7 +59,7 @@ class ProfileActivity : BaseActivity() {
             if (mSelectedImageFileUri != null) {
                 uploadUserImage()
             } else {
-                showProgressDialog(resources.getString(R.string.please_wait))
+
                 updateUserProfileData()
             }
 
@@ -119,48 +121,72 @@ class ProfileActivity : BaseActivity() {
     }
 
     private fun updateUserProfileData() {
-        val userHashmap = HashMap<String, Any>()
+        if(validateProfileDetails()) {
+            showProgressDialog(resources.getString(R.string.please_wait))
+            val userHashmap = HashMap<String, Any>()
 
-        if (mProfileImageURL.isNotEmpty() && mProfileImageURL != mUserDetails.image) {
-            userHashmap[Constants.IMAGE] = mProfileImageURL
+            if (mProfileImageURL.isNotEmpty() && mProfileImageURL != mUserDetails.image) {
+                userHashmap[Constants.IMAGE] = mProfileImageURL
+            }
+
+            if (profile_etUsername.text.toString() != mUserDetails.name) {
+                userHashmap[Constants.NAME] = profile_etUsername.text.toString()
+            }
+
+            if (profile_et_mobile.text.toString() != mUserDetails.mobile.toString()) {
+                userHashmap[Constants.MOBILE] = profile_et_mobile.text.toString().toLong()
+            }
+
+            FirestoreClass().updateUserProfileData(this, userHashmap)
         }
-
-        if (profile_etUsername.text.toString() != mUserDetails.name) {
-            userHashmap[Constants.NAME] = profile_etUsername.text.toString()
-        }
-
-        if (profile_et_mobile.text.toString() != mUserDetails.mobile.toString()) {
-            userHashmap[Constants.MOBILE] = profile_et_mobile.text.toString().toLong()
-        }
-
-        FirestoreClass().updateUserProfileData(this, userHashmap)
     }
 
     private fun uploadUserImage() {
-        showProgressDialog(resources.getString(R.string.please_wait))
-        if (mSelectedImageFileUri != null) {
-            val sRef: StorageReference = FirebaseStorage.getInstance()
-                .reference.child(
-                    "USER_IMAGE" + System.currentTimeMillis() + "." +
-                            Constants.getFileExtension(this,mSelectedImageFileUri!!)
-                )
+        if(validateProfileDetails()) {
+            showProgressDialog(resources.getString(R.string.please_wait))
+            if (mSelectedImageFileUri != null) {
+                val sRef: StorageReference = FirebaseStorage.getInstance()
+                    .reference.child(
+                        "USER_IMAGE" + System.currentTimeMillis() + "." +
+                                Constants.getFileExtension(this, mSelectedImageFileUri!!)
+                    )
 
-            sRef.putFile(mSelectedImageFileUri!!).addOnSuccessListener { taskSnapshot ->
-                Log.i(
-                    "FirebaseImageUrl",
-                    taskSnapshot.metadata!!.reference!!.downloadUrl.toString()
-                )
-                taskSnapshot.metadata!!.reference!!.downloadUrl.addOnSuccessListener { uri ->
-                    Log.i("DownloadImageUrl", uri.toString())
-                    mProfileImageURL = uri.toString()
-                    updateUserProfileData()
+                sRef.putFile(mSelectedImageFileUri!!).addOnSuccessListener { taskSnapshot ->
+                    Log.i(
+                        "FirebaseImageUrl",
+                        taskSnapshot.metadata!!.reference!!.downloadUrl.toString()
+                    )
+                    taskSnapshot.metadata!!.reference!!.downloadUrl.addOnSuccessListener { uri ->
+                        Log.i("DownloadImageUrl", uri.toString())
+                        mProfileImageURL = uri.toString()
+                        updateUserProfileData()
+                    }
+                }.addOnFailureListener { exception ->
+                    Toast.makeText(this@ProfileActivity, exception.message, Toast.LENGTH_LONG)
+                        .show()
+                    hideProgressDialog()
                 }
-            }.addOnFailureListener { exception ->
-                Toast.makeText(this@ProfileActivity, exception.message, Toast.LENGTH_LONG).show()
-                hideProgressDialog()
-            }
 
+            }
         }
+    }
+
+    private fun validateProfileDetails(): Boolean {
+        return when {
+
+            TextUtils.isEmpty(profile_etUsername.text.toString().trim { it <= ' ' }) -> {
+                showErrorSnackBar("Enter Username", true)
+                false
+            }
+            TextUtils.isEmpty(profile_et_mobile.text.toString().trim { it <= ' ' }) -> {
+                showErrorSnackBar("Enter Mobile Number", true)
+                false
+            }
+            else -> {
+                true
+            }
+        }
+
     }
 
 

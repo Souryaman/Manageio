@@ -52,6 +52,7 @@ open class TaskListItemsAdapter(private val context: Context,private var list : 
                 holder.itemView.ll_task_item.visibility = View.VISIBLE
             }
             holder.itemView.tv_task_list_title.text = model.title
+
             holder.itemView.tv_add_task_list.setOnClickListener {
                 holder.itemView.tv_add_task_list.visibility = View.GONE
                 holder.itemView.cv_add_task_list_name.visibility = View.VISIBLE
