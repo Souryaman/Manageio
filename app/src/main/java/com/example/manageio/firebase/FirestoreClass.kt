@@ -55,14 +55,14 @@ class FirestoreClass {
             }
     }
 
-    fun deleteBoard(){
-        mFireStore.collection(Constants.BOARDS).document(Constants.DOCUMENT_ID).delete().addOnSuccessListener {
-            Log.i("FireStoreDel", "Item Deleted Successfully")
-        }.addOnFailureListener {
-            e->
-            Log.e("FireStoreDel","Error occured with exception $e")
-        }
-    }
+//    fun deleteBoard(){
+//        mFireStore.collection(Constants.BOARDS).document(Constants.DOCUMENT_ID).delete().addOnSuccessListener {
+//            Log.i("FireStoreDel", "Item Deleted Successfully")
+//        }.addOnFailureListener {
+//            e->
+//            Log.e("FireStoreDel","Error occured with exception $e")
+//        }
+//    }
 
     fun getBoardsList(activity: MainActivity) {
         mFireStore.collection(Constants.BOARDS)

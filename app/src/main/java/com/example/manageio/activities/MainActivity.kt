@@ -94,14 +94,14 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 }
             })
 
-            val item = object : SwipeToDelete(this, 0, ItemTouchHelper.RIGHT) {
-                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                    adapter.del(viewHolder.adapterPosition)
-                }
-            }
-
-            val itemTouchHelper = ItemTouchHelper(item)
-            itemTouchHelper.attachToRecyclerView(rv_boardList)
+//            val item = object : SwipeToDelete(this, 0, ItemTouchHelper.RIGHT) {
+//                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+//                    adapter.del(viewHolder.adapterPosition)
+//                }
+//            }
+//
+//            val itemTouchHelper = ItemTouchHelper(item)
+//            itemTouchHelper.attachToRecyclerView(rv_boardList)
 
 
         } else {

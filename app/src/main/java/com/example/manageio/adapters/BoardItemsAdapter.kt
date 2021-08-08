@@ -13,10 +13,10 @@ import kotlinx.android.synthetic.main.item_board.view.*
 
 open class BoardItemsAdapter(private val context: Context,private var list: ArrayList<Board>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
-    var lists = mutableListOf<Board>()
-    init {
-        this.lists = list as MutableList<Board>
-    }
+//    var lists = mutableListOf<Board>()
+//    init {
+//        this.lists = list as MutableList<Board>
+//    }
     private var onClickListener : OnClickListener ?= null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -52,11 +52,11 @@ open class BoardItemsAdapter(private val context: Context,private var list: Arra
         this.onClickListener = onClickListener
     }
 
-    fun del(position: Int){
-        FirestoreClass().deleteBoard()
-        lists.removeAt(position)
-        notifyDataSetChanged()
-    }
+//    fun del(position: Int){
+//        FirestoreClass().deleteBoard()
+//        lists.removeAt(position)
+//        notifyDataSetChanged()
+//    }
 
     override fun getItemCount(): Int {
         return list.size
